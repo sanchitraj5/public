@@ -1,0 +1,35 @@
+Parallel Stages:
+
+pipeline {
+    agent any
+    stages {
+		stage("STAGE 1"){
+            			steps {
+                			echo "This is stage one"
+               				 sh 'sleep 5'
+           			 }
+        		}
+		stage("STAGE 2"){
+			parallel {		
+				stage("STAGE 2 A"){
+					steps {
+						echo "This is stage 2A"
+						sh 'sleep 5'
+					}
+				}
+				stage("STAGE 2 B"){
+					steps {
+						echo "This is stage 2B"
+						sh 'sleep 5'
+	                }
+				}
+			}
+		}
+		stage("STAGE 3"){
+            			steps {
+                			echo "This is stage three"
+                			sh 'sleep 5'
+           			 }
+       		 }
+    }    
+}
